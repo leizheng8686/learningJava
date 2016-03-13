@@ -30,26 +30,26 @@ public class JulianDate {
 	}
 	public JulianDate(int year, int mon, int day,
 				int hour, int min, int sec) {
-		
-		
+			
 	}
-	
-	public int getYear() {
-		int j = (int)julianDate;
-		return 
-			year = j/(146097)*400+
+	public void updateYMD(){
+		int j = (int)julianDate; 
+		year = j/(146097)*400+
 				(j-j/(146097)*146097)/36524*100+
 				  ((j-j/(146097)*146097)-(j-j/(146097)*146097)/36524*36524)/1461*4+
 				    (((j-j/(146097)*146097)-(j-j/(146097)*146097)/36524*36524)-((j-j/(146097)*146097)-(j-j/(146097)*146097)/36524*36524)/1461*1461)/365;
+		month = j - ((year*365) +(year/4) -(year/100) +(year/400));
+	}
+	public int getYear() {
+		updateYMD();
+		return year;
 	}
 	public int getMonth() {
-		int j = (int)julianDate;
-		int monthd = j - ((year*365) +(year/4) -(year/100) +(year/400));
-		return 
-			month = monthd;
+		updateYMD();
+		return month;
 	}
-	
 	public int getDay() {
+		updateYMD();
 		return day;
 	}
 //	// return 0 for Sunday, 1=monday, ... 6 = Saturday
